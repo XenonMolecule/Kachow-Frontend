@@ -23,16 +23,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
       - name: Build the app
-        run: yarn build
+        run: cd ./kachow-app/ && yarn build && cd ..
         
       - name: Push to backend repository
         uses: XenonMolecule/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: 'build'
+          source-directory: './kachow-app/build'
           destination-github-username: 'XenonMolecule'
           destination-repository-name: 'Kachow-Backend'
           user-email: michael_ryan_2000@yahoo.com
