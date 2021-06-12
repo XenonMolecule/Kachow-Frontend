@@ -23,8 +23,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Build the app
-        run: cd ./kachow-app/ && yarn build && cd ..
+      - name: Navigate to app
+        run: cd ./kachow-app/
+        
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install # will run `yarn install` command
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build # will run `yarn build` command
+
+      - name: Navigate back
+        run: cd ..
         
       - name: Push to backend repository
         uses: XenonMolecule/github-action-push-to-another-repository@main
