@@ -26,12 +26,8 @@ jobs:
       - name: Navigate to app
         run: cd ./kachow-app/
         
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build # will run `yarn build` command
+      - name: Run yarn
+        run: yarn install && yarn build
 
       - name: Navigate back
         run: cd ..
